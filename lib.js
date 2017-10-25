@@ -25,7 +25,12 @@ const listedPrice =
 const calculateTotals =
   listings =>
     carts => {
-      // TODO
+      return carts.map( (thisCart) => {
+          let total = thisCart.items.map( (a) => listedPrice(listings[listings.findIndex( x => x.name === a)])(a))
+                      .reduce((a, c) => a + c)
+          return { customer: thisCart.customer, total }
+        }
+      )
     }
 
 module.exports = {
